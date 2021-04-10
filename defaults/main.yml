@@ -1,0 +1,5 @@
+---
+cssdm_url: http://www.bailopan.net/cssdm/snapshots/2.1
+cssdm_version: 2.1.6-git268
+cssdm_target: "cssdm-{{ cssdm_version }}-linux.tar.gz"
+cssdm_install_path: "/home/{{ steamcmd_user }}/.steam/steamapps/common/Counter-Strike Source Dedicated Server/cstrike"

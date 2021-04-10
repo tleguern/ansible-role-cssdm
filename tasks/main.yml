@@ -1,0 +1,115 @@
+---
+- name: Check if CSSDM is installed
+  stat:
+    path: "{{ cssdm_install_path }}/cfg/cssdm/"
+  register: __cssdm_exists
+
+- name: Check if CSSDM was installed using ansible
+  stat:
+    path: "{{ cssdm_install_path }}/cfg/cssdm/extra/version.txt"
+  register: __cssdm_exists_ansible
+  when: __cssdm_exists.stat.exists
+
+- name: Check the currently installed version of CSSDM
+  command:
+    cmd: grep -qF {{ cssdm_version }} "{{ cssdm_install_path }}/cfg/cssdm/extra/version.txt"
+  register: __cssdm_current_version
+  changed_when: false
+  failed_when: false
+  when:
+    - __cssdm_exists.stat.exists
+    - __cssdm_exists_ansible.stat.exists
+
+- name: Remove the previous version
+  file:
+    path: "{{ cssdm_install_path }}/{{ item }}"
+    state: absent
+  loop:
+    - cfg/cssdm/
+    - addons/sourcemod/extensions/cssdm.ext.2.csgo.so
+    - addons/sourcemod/extensions/cssdm.ext.2.css.so
+    - addons/sourcemod/gamedata/cssdm.games.txt
+    - addons/sourcemod/plugins/cssdm/
+    - addons/sourcemod/scripting/dm_basics.sp
+    - addons/sourcemod/scripting/dm_bot_quotas.sp
+    - addons/sourcemod/scripting/dm_equipment.sp
+    - addons/sourcemod/scripting/dm_preset_spawns.sp
+    - addons/sourcemod/scripting/dm_spawn_protection.sp
+    - addons/sourcemod/scripting/include/cssdm.inc
+    - addons/sourcemod/translations/cssdm.phrases.txt
+  when:
+    - __cssdm_exists.stat.exists
+    - __cssdm_current_version.rc != 0
+
+- name: Install CSSDM
+  when: 'not __cssdm_exists.stat.exists or not __cssdm_exists_ansible.stat.exists or __cssdm_current_version.rc != 0'
+  block:
+    - name: Download the requested version
+      get_url:
+        url: "{{ cssdm_url }}/{{ cssdm_target }}"
+        dest: /tmp
+
+    - name: Extract the downloaded file
+      unarchive:
+        remote_src: yes
+        src: "/tmp/{{ cssdm_target }}"
+        dest: "{{ cssdm_install_path }}/"
+        owner: "{{ steamcmd_user }}"
+
+    - name: Remove the archive
+      file:
+        path: "/tmp/{{ cssdm_target }}"
+        state: absent
+
+    - name: Write the current CSSDM version
+      copy:
+        dest: "{{ cssdm_install_path }}/cfg/cssdm/extra/version.txt"
+        content: "{{ cssdm_version }}"
+        owner: "{{ steamcmd_user }}"
+      notify: "Restart cstrike-source"
+
+- name: Ensure cssdm.equip.txt is configured
+  template:
+    src: cssdm.equip.txt.j2
+    dest: "{{ cssdm_install_path }}/cfg/cssdm/cssdm.equip.txt"
+    owner: "{{ steamcmd_user }}"
+    mode: 0600
+  when: cssdm_equip_cfg is defined
+  notify: "Restart cstrike-source"
+
+- name: Ensure cssdm.cfg is configured
+  template:
+    src: cssdm.cfg.j2
+    dest: "{{ cssdm_install_path }}/cfg/cssdm/cssdm.cfg"
+    owner: "{{ steamcmd_user }}"
+    mode: 0600
+  when: cssdm_cfg is defined
+  notify: "Restart cstrike-source"
+
+- name: Ensure map specific configuration is installed
+  template:
+    src: map.cssdm.cfg.j2
+    dest: "{{ cssdm_install_path }}/cfg/cssdm/maps/{{ item.map }}.cssdm.cfg"
+    owner: "{{ steamcmd_user }}"
+    mode: 0600
+  loop: "{{ cssdm_maps_cfg }}"
+  loop_control:
+    label: "{{ item.map }}"
+  when:
+    - cssdm_maps_cfg is defined
+    - item.cfg is defined
+  notify: "Restart cstrike-source"
+
+- name: Ensure map specific equipment configuration is installed
+  template:
+    src: map.cssdm.equip.txt.j2
+    dest: "{{ cssdm_install_path }}/cfg/cssdm/maps/{{ item.map }}.equip.txt"
+    owner: "{{ steamcmd_user }}"
+    mode: 0600
+  loop: "{{ cssdm_maps_cfg }}"
+  loop_control:
+    label: "{{ item.map }}"
+  when:
+    - cssdm_maps_cfg is defined
+    - item.equip is defined
+  notify: "Restart cstrike-source"

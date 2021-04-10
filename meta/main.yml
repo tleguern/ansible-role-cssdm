@@ -1,0 +1,18 @@
+---
+galaxy_info:
+  role_name: cssdm
+  author: Tristan Le Guern
+  description: Install the Counter-Strike Source Death Match plugin
+  company: Gwern
+  license: ISC
+  min_ansible_version: 2.9
+  platforms:
+    - name: Debian
+    - name: Ubuntu
+  galaxy_tags:
+    - cstrike
+    - counterstrike
+    - metamodsource
+    - sourcemod
+    - deathmatch
+dependencies: []
