@@ -7,11 +7,14 @@
   vars:
     steamcmd_user: steam
     cstrike_source_ip: 127.0.0.1
+    cstrike_source_server_cfg: |
+      hostname "srht"
+      rcon_password "srht"
     metamod_source_install_path: /home/steam/cstrike-source/cstrike
     metamod_source_branch: "1.10"
     sourcemod_branch: '1.10'
     cssdm_cfg: |
-        cssdm_enabled "1"
+      cssdm_enabled "1"
   tasks:
     - name: "Include tleguern.steamcmd"
       include_role:

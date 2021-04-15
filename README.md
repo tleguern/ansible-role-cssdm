@@ -23,11 +23,11 @@ An ansible role dedicated to the installation of a Source mod such as [ansible-r
 | `cssdm_equip_cfg` | ... | ... |
 | `cssdm_maps_cfg` | ... | ... |
 
-# Dependencies
+## Dependencies
 
 None.
 
-# Example Playbook
+## Example Playbook
 
 ```yaml
 - hosts: game
@@ -53,7 +53,7 @@ None.
     - role: tleguern.cssdm
 ```
 
-# License
+## License
 
 ISC
 
@@ -61,6 +61,6 @@ ISC
 
 Either send [send GitHub pull requests](https://github.com/tleguern/ansible-role-cssdm) or [send patches on SourceHut](https://lists.sr.ht/~tleguern/misc).
 
-# Author Information
+## Author Information
 
 Tristan Le Guern <tleguern@bouledef.eu>
