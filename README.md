@@ -4,11 +4,11 @@ An Ansible role that installs, upgrades and configures the deathmatch mode for C
 
 ## Requirements
 
-An ansible role dedicated to the installation of SteamCMD such as [ansible-steamcmd](https://github.com/Aversiste/ansible-steamcmd).
+An ansible role dedicated to the installation of SteamCMD such as [ansible-steamcmd](https://github.com/tleguern/ansible-steamcmd).
 
-An ansible role dedicated to the Installation of Metamod:Source such as [ansible-role-metamod-source](https://github.com/Aversiste/ansible-role-metamod-source).
+An ansible role dedicated to the Installation of Metamod:Source such as [ansible-role-metamod-source](https://github.com/tleguern/ansible-role-metamod-source).
 
-An ansible role dedicated to the installation of a Source mod such as [ansible-role-cstrike-source](https://github.com/Aversiste/ansible-role-cstrike-source) or any role providing the `Restart {{ metamod_source_game }}` handler.
+An ansible role dedicated to the installation of a Source mod such as [ansible-role-cstrike-source](https://github.com/tleguern/ansible-role-cstrike-source) or any role providing the `Restart {{ metamod_source_game }}` handler.
 
 ## Role Variables
 
