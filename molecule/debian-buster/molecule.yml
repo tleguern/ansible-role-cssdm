@@ -7,7 +7,7 @@ dependency:
 driver:
   name: delegated
   options:
-    managed: false
+    managed: no
     ansible_connection_options:
       ansible_connection: local
 platforms:

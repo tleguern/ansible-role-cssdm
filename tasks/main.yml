@@ -14,8 +14,8 @@
   command:
     cmd: grep -qF {{ cssdm_version }} "{{ cssdm_install_path }}/cfg/cssdm/extra/version.txt"
   register: __cssdm_current_version
-  changed_when: false
-  failed_when: false
+  changed_when: no
+  failed_when: no
   when:
     - __cssdm_exists.stat.exists
     - __cssdm_exists_ansible.stat.exists

@@ -1,7 +1,7 @@
 ---
 - name: Verify
   hosts: all
-  gather_facts: false
+  gather_facts: no
   become: no
   tasks:
     - name: Query metamod version
