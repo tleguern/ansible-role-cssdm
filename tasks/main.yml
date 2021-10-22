@@ -76,7 +76,7 @@
     dest: "{{ cssdm_install_path }}/cfg/cssdm/cssdm.equip.txt"
     owner: "{{ steamcmd_user }}"
     group: "{{ steamcmd_user }}"
-    mode: 0600
+    mode: 0644
   when: cssdm_equip_cfg is defined
   notify: "Restart cstrike-source"
 
@@ -86,7 +86,7 @@
     dest: "{{ cssdm_install_path }}/cfg/cssdm/cssdm.cfg"
     owner: "{{ steamcmd_user }}"
     group: "{{ steamcmd_user }}"
-    mode: 0600
+    mode: 0644
   when: cssdm_cfg is defined
   notify: "Restart cstrike-source"
 
@@ -96,7 +96,7 @@
     dest: "{{ cssdm_install_path }}/cfg/cssdm/maps/{{ item.map }}.cssdm.cfg"
     owner: "{{ steamcmd_user }}"
     group: "{{ steamcmd_user }}"
-    mode: 0600
+    mode: 0644
   loop: "{{ cssdm_maps_cfg }}"
   loop_control:
     label: "{{ item.map }}"
@@ -111,7 +111,7 @@
     dest: "{{ cssdm_install_path }}/cfg/cssdm/maps/{{ item.map }}.equip.txt"
     owner: "{{ steamcmd_user }}"
     group: "{{ steamcmd_user }}"
-    mode: 0600
+    mode: 0644
   loop: "{{ cssdm_maps_cfg }}"
   loop_control:
     label: "{{ item.map }}"
