@@ -18,7 +18,7 @@ An ansible role dedicated to the installation of a Source mod such as [ansible-r
 | `cssdm_url` | Download mirror | `http://www.bailopan.net/cssdm/snapshots/2.1` |
 | `cssdm_version` | Desired version | `2.1.6-git268` |
 | `cssdm_target` | Archive name | `cssdm-{{ cssdm_version }}-linux.tar.gz` |
-| `cssdm_install_path` | Installation directory | `/home/{{ steamcmd_user }}/.steam/steamapps/common/Counter-Strike Source Dedicated Server/cstrike` |
+| `cssdm_install_path` | Installation directory | `/home/{{ steamcmd_user }}/cstrike-source/cstrike` |
 | `cssdm_cfg` | Main configuration file content | See bellow |
 | `cssdm_equip_cfg` | Equipment configuration file content | See bellow |
 | `cssdm_maps_cfg` | Map specific configuration files content | See bellow |
