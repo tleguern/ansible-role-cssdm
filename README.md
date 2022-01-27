@@ -1,6 +1,10 @@
 # Ansible Role: Counter-Strike: Source Death Match mode
 
+[![builds.sr.ht status](https://builds.sr.ht/~tleguern/ansible-role-cssdm.svg)](https://builds.sr.ht/~tleguern/ansible-role-cssdm?)
+
 An Ansible role that installs, upgrades and configures the deathmatch mode for Counter-Strike: Source.
+
+Automatic testing is provided using molecule's delegated driver and <https://builds.sr.ht>.
 
 ## Requirements
 
