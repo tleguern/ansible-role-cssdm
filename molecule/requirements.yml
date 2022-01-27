@@ -2,13 +2,13 @@
 roles:
   - src: https://github.com/tleguern/ansible-steamcmd.git
     name: tleguern.steamcmd
-    version: v1.1.0
+    version: 1.1.0
   - src: https://github.com/tleguern/ansible-role-cstrike-source.git
     name: tleguern.cstrike-source
-    version: v1.1.0
+    version: 1.1.0
   - src: https://github.com/tleguern/ansible-role-metamod-source.git
     name: tleguern.metamod-source
-    version: v1.0.2
+    version: 1.0.2
   - src: https://github.com/tleguern/ansible-role-sourcemod.git
     name: tleguern.sourcemod
-    version: v1.2.0
+    version: 1.2.0
